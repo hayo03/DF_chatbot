@@ -38,7 +38,7 @@ python webhook_service.py
 ```
 ngrok http 8081 (or ./ngrok http 8081 if the first one does not work) 
 ```
-if you don't have ngrok configured in your laptop, just Download it from [ngrok](https://ngrok.com/download), unzip it, and in the terminal just run (cd Pathtounzipedfolder)  and then run (ngrok http 8081).
+if you don't have ngrok configured in your laptop, just Download it from [ngrok](https://ngrok.com/download), unzip it, and in the terminal just run (cd Path_to_unziped_folder) and then run (ngrok http 8081).
 
 8. Copy the HTTPS URL (some thing like https://25e5bc5277ea.ngrok.io) and go back to the created agent, click on "Fulfillment" option, enable "Webhook" option and paste the URL in URL* filed and add "/my_webhook" at the end of URL 
 
