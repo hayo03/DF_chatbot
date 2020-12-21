@@ -17,11 +17,13 @@ In the following, we explain the required step in order to configure DF-Chatbot 
 5. To fulfill some intents, the chatbot invokes specific APIs, namely [here](https://developer.here.com/); [openweathermap](https://openweathermap.org/api); [Yelp](https://www.yelp.com/developers/documentation/v3). To use these APIs you need to get credential information mentioned in API_credentials.json file in the chatbot folder and complete them. Getting credential information requires creating accounts in these APIs.
 
 6. Once you get the required credentials and complete API_credentials.json file, open terminal, create a virtual environment and install required packages
+
 Operating system: macOS/OS X, Linux; 
 ```
 cd Chatbot
 bash run.sh
 ```
+
 Operating system: Windows; 
 ```
 cd Chatbot
@@ -31,13 +33,9 @@ pip install -r requirements.txt
 python webhook_service.py
 ```
 
-
-
-
 7. Open new terminal to run ngrok server
 
 ```
-
 ngrok http 8081 (or ./ngrok http 8081 if the first one does not work) 
 ```
 if you don't have ngrok configured in your laptop, just Download it from [ngrok](https://ngrok.com/download), unzip it, and in the terminal just run (cd Pathtounzipedfolder)  and then run (ngrok http 8081).
