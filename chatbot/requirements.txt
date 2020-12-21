@@ -1,0 +1,7 @@
+requests
+amadeus
+flask-cors
+jwt
+requests
+flask
+geopy
