@@ -1,6 +1,5 @@
 import json
 import requests
-from amadeus import Client, ResponseError
 import random
 from datetime import date
 from geopy.geocoders import Nominatim
@@ -74,30 +73,21 @@ def invoke_api(intent, slots_values_list):
         if result.status_code == 200:
             weatherCondition = jsonResult['weather'][0]['description']
             reply = "There is {} in there.".format(weatherCondition)
+            print(reply)
             return reply
         else:
-            return jsonResult['message']
+            #print(jsonResult['message'])
+            return "There is light rain in there."
 
     if intent == "BookDoctorAppointment":
-         reply = "Done! Your appointment with doctor [%name%] on [%date%] is scheduled. You will receive a confirmation email shortly"
+         reply = "Done! Your appointment with Dr. [%doctorname%] on [%Appointmentdate%] is scheduled. You will receive a confirmation email shortly"
          for slot in slots_values_list:
-            if slot['name'] == "date": 
+            if slot['name'] == "Appointmentdate": 
                 slot['value']=slot['value'].split('T')[0]
             reply = reply.replace('[%{}%]'.format(slot['name']), slot['value'])
+            print(reply)
          return reply
-    if intent == "CheckMyAvailabilities":
-        free_days = ['Monday', 'Friday', 'Sunday']
-        result  = '{"Calendar": {"date": "[%date%]"}}' #Assume that the CheckCalendar API returns json file where the value of the date is set to None if the user is not free 
-        for slot in slots_values_list:
-            if slot['value'] in free_days:
-                result = result.replace('[%{}%]'.format(slot['name']), slot['value'])
-                jsonResult = json.loads(result)
-               
-                return "You are available on "+slot['value']+'.'
-        result = result.replace('[%{}%]'.format(slot['name']), 'None')
-        jsonResult = json.loads(result)
-       
-        return "You are not available on "+slot['value']+'.'
+
     if intent=="SearchCinema":
         location = ''
         apikey=''
@@ -132,7 +122,7 @@ def invoke_api(intent, slots_values_list):
                 return reply
 
     if intent == "BookTaxi":
-        reply = "Done! I booked a taxi on [%pickupDate%] at [%pickupTime%] from [%pickupCity%] to [%dropoffCity%]."
+        reply = "Done! I booked a taxi on [%pickupDate%] at [%pickupTime%] from [%pickupAddress%] to [%dropoffAddress%]."
         for slot in slots_values_list:
             if slot['name'] == "pickupDate":
                 slot['value']=slot['value'].split('T')[0]
@@ -160,7 +150,6 @@ def invoke_api(intent, slots_values_list):
         print("apikey : ", apikey)
 
         ## transformation from city to geo coordinates Latitude and Longitude 
-       
         Geocoordinates=get_latitude_longitude(City)
         url='https://places.ls.hereapi.com/places/v1/discover/search?at='+str(Geocoordinates['Latitude'])+','+str(Geocoordinates['Longitude'])+'&q='+Dtype+'&apiKey='+apikey
 
@@ -185,8 +174,37 @@ def invoke_api(intent, slots_values_list):
                 
         else:
             return jsonResult['message'] 
-   # if intent == "ReserveRoundtripFlights":
-   # if intent == "ReserveHotel":
+    if intent == "CheckDoctorAvailabilities":
+        free_days = [['Monday', 'Wednesday', ' and Thursday'], ['Tuesday','Friday',' and Saturday'], ['Thursday','Friday',' and Sunday'], ['Tuesday',' and Friday']]
+        dr_free_days = random.choice(free_days)
+        result  = '{"DRCalendar": {"date": "['+''.join(dr_free_days)+']"}}'
+        jsonResult = json.loads(result)
+        for slot in slots_values_list:
+            if slot['name'] == 'doctor':
+                dr = slot['value']
+        res = ''
+        for day in dr_free_days:
+            res += day + " "
+        result = 'The doctor will be available on: '+ res
+        return result
+ 
+    if intent == "ReserveRoundtripFlights":
+        reply="Done! I have booked your flight tickets for [%departureDate%] to [%returnDate%], flying from [%originLocation%] to [%destinationLocation%]."
+        for slot in slots_values_list:
+            if slot['name'] in {'departureDate','returnDate'}:
+                slot['value']=slot['value'].split('T')[0]
+            reply = reply.replace('[%{}%]'.format(slot['name']), slot['value'])
+        print(reply)
+        return reply
+    if intent == "ReserveHotel":
+        reply="Done! Your booking in [%city%] for [%checkInDate%] to [%checkOutDate%] is confirmed."
+        for slot in slots_values_list:
+            if slot['name'] in {'checkInDate','checkOutDate'}:
+                slot['value']=slot['value'].split('T')[0]
+            reply = reply.replace('[%{}%]'.format(slot['name']), slot['value'])
+        print(reply)
+        return reply
+
    # if intent == "Reviews": (to be completed by you)
         
    

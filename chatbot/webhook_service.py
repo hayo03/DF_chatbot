@@ -20,10 +20,8 @@ def post_webhook_dialogflow():
 
     for key, value in body['queryResult']['parameters'].items():
         if len(str(value)) > 0:
-            if len(key.split('__')) == 3:
-                slots.append({'name':key.split('__')[2], 'value':value})
-            elif len(key.split('__')) == 2:
-                slots.append({'name':key.split('__')[1], 'value':value})
+            slots.append({'name':key,'value':value})
+           
     print (slots)
 
     # msg = 'hi'
