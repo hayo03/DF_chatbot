@@ -14,13 +14,14 @@ from api_manager import invoke_api
 @app.route('/my_webhook', methods=['POST'])
 def post_webhook_dialogflow():
     body = request.get_json(silent=True)
-    session_id = body['session']
-    intent = body['queryResult']['intent']['displayName']
+    session_id = body['detectIntentResponseId'][0]
+    print(session_id)
+    intent = body['intentInfo']['displayName']
     slots = []
 
-    for key, value in body['queryResult']['parameters'].items():
+    for key, value in body['intentInfo']['parameters'].items():
         if len(str(value)) > 0:
-            slots.append({'name':key,'value':value})
+            slots.append({'name':key,'value':value['originalValue']})
            
     print (slots)
 
@@ -30,27 +31,16 @@ def post_webhook_dialogflow():
 
 
 def answer_webhook(msg, session_id, user_intent):
-    message = {
-        "fulfillmentText": msg,
-        "fulfillmentMessages": [
-            {
-                "simpleResponses": {
-                    "simpleResponses": [
-                        {
-                            "textToSpeech": msg,
-                            "displayText": msg
-                        }
-
-                    ]
-                }
-            }
-        ],
-        # "source": "example.com",
-        "outputContexts": [
-            {
-                "name": '{}/contexts/{}'.format(session_id, user_intent),
-                "lifespanCount": 5,
-            }]
+    message= {"fulfillment_response": {
+      
+        "messages": [
+        {
+          "text": {
+            "text": [msg]
+          }
+        }
+      ]
+    }
     }
     return Response(json.dumps(message), 200, mimetype='application/json')
 
