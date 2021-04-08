@@ -14,23 +14,22 @@ from api_manager import invoke_api
 @app.route('/my_webhook', methods=['POST'])
 def post_webhook_dialogflow():
     body = request.get_json(silent=True)
-    session_id = body['detectIntentResponseId'][0]
+    session_id = body['detectIntentResponseId']
+    print ("responseid")
     print(session_id)
-    intent = body['intentInfo']['displayName']
+    #The tag used to identify which fulfillment is being called.
+    fulfillment = body['fulfillmentInfo']['tag']
     slots = []
-
-    for key, value in body['intentInfo']['parameters'].items():
-        if len(str(value)) > 0:
-            slots.append({'name':key,'value':value['originalValue']})
-           
+    for key, value in body['sessionInfo']['parameters'].items():
+        slots.append({'name':key,'value':value})
+       
     print (slots)
-
     # msg = 'hi'
-    msg = invoke_api(intent, slots)
-    return answer_webhook(msg, session_id, intent)
+    msg = invoke_api(fulfillment, slots)
+    return answer_webhook(msg, session_id)
 
 
-def answer_webhook(msg, session_id, user_intent):
+def answer_webhook(msg, session_id):
     message= {"fulfillment_response": {
       
         "messages": [
