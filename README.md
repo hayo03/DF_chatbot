@@ -5,15 +5,15 @@ In the following, we explain the required step in order to configure DF-Chatbot 
 ## How to configure Df-Chatbot? 
 1. Download the source code in this github project. The source code includes the following files:
 
-  *Study_Agent.zip
+  *Study_Agent_CX.blob
   
   *Chatbot folder
   
-2. Create a new empty agent using  [DF console](https://dialogflow.cloud.google.com/)
+2. Create a new project and an empty agent using  [DF-CX console](https://dialogflow.cloud.google.com/cx/projects)
 
-3. Go to "Export and Import" option in the agent setting
+3. Go to "View all agents" in the current project
 
-4. Click on RESTORE FROM ZIP and select the downloaded file Study_Agent.zip
+4. Click on RESTORE and select the downloaded file Study_Agent_CX.blob
 5. To fulfill some intents, the chatbot invokes specific APIs, namely [here](https://developer.here.com/); [openweathermap](https://openweathermap.org/api); [Yelp](https://www.yelp.com/developers/documentation/v3). To use these APIs you need to get credential information mentioned in API_credentials.json file in the chatbot folder and complete them. Getting credential information requires creating accounts in these APIs.
 
 6. Once you get the required credentials and complete API_credentials.json file, open terminal, create a virtual environment and install required packages
