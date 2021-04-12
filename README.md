@@ -1,55 +1,40 @@
 # DF_chatbot
 
 ## Introduction 
-In the following, we explain the required step in order to configure DF-Chatbot and then interact with it. All these steps are demonstrated in this [video](https://drive.google.com/file/d/1_dwLW0SgkQHw-pU6RHTVlWK1JT-MCZIT/view?usp=sharing).
+In the following, we explain the required steps in order to configure DF-Chatbot and then interact with it. All these steps are demonstrated in this [video](https://drive.google.com/file/d/1_dwLW0SgkQHw-pU6RHTVlWK1JT-MCZIT/view?usp=sharing).
 ## How to configure Df-Chatbot? 
 1. Go to [DialogFlow CX console](https://dialogflow.cloud.google.com/cx/projects)
 2. Create a new google cloud project and enable DialogFlow API.
-3. Create a new agent.
-4. Download the source code in this github project. The source code includes the following files:
-  *Study_Agent_CX.blob File
-  *Chatbot Folder
-  
-2. Create a new project and an empty agent using  [DF-CX console](https://dialogflow.cloud.google.com/cx/projects)
+3. Create a new empty agent.
+4. Download Study_Agent.blob file in this github project. The Study_Agent.blob file contains necessary intents, training phrases, and entities for this user study.
+5. Go to "View all agents" in the current project and restore Study_Agent.
+6. To have access to the webhook service for this study, create a new webhook "my_webhook_service" and use this URL [https://webhook-workshop.herokuapp.com/my_webhook](https://webhook-workshop.herokuapp.com/my_webhook). In the next section, we will show you how to deploy this webhook_service on heroku, it will allow you to use your own URL and update the code.
+7. Congratulations! you just finish the configuration of the chatbot. Let's do a test.
 
-3. Go to "View all agents" in the current project
+## Test your Df-Chatbot
+1. Click on "Start" page and create a new Route:
+- Intent: GetWeather
+- Tranistion: New Page "Get Weather"
+3. Click on "Get Weather" page and create a new parameter:
+- Parameter name: location
+- Entity type: @sys.geo-city
+- Check "Required"
+- Fulfillement (Agent says): What is the location?
+4. Click on "Get Weather" page and create a new Route:
+- Condition: $page.params.status="FINAL"
+- Check "Use Webhook"
+- Select "my_webhook_service"
+- Tag: GetWeather_fulfillment
+5. Click on "Test Agent" and ask the agent for the weather in a city. The agent will give you the weather forecast in the given city.
+6. Congratulations! You can now start the user study using this agent.
 
-4. Click on RESTORE and select the downloaded file Study_Agent_CX.blob
-5. To fulfill some intents, the chatbot invokes specific APIs, namely [here](https://developer.here.com/); [openweathermap](https://openweathermap.org/api); [Yelp](https://www.yelp.com/developers/documentation/v3). To use these APIs you need to get credential information mentioned in API_credentials.json file in the chatbot folder and complete them. Getting credential information requires creating accounts in these APIs.
+## How to deploy my own webhook_service
+If you want/need to change the webhook_service code source you will need to deploy your own webhook_service. In the following, we explain the required steps to deploy the webhook_service on heroku:
+1. Download webhook_service folder in this github project. This folder contains ...
+2. 
 
-6. Once you get the required credentials and complete API_credentials.json file, open terminal, create a virtual environment and install required packages
 
-Operating system: macOS/OS X, Linux; 
-```
-cd Chatbot
-bash run.sh
-```
 
-Operating system: Windows; 
-```
-cd Chatbot
-virtualenv -p python3 venv
-venv\Scripts\activate.bat
-pip install -r requirements.txt
-python webhook_service.py
-```
-
-7. Open new terminal to run ngrok server
-
-```
-ngrok http 8081 (or ./ngrok http 8081 if the first one does not work) 
-```
-if you don't have ngrok configured in your laptop, just Download it from [ngrok](https://ngrok.com/download), unzip it, and in the terminal just run (cd Path_to_unziped_folder) and then run (ngrok http 8081).
-
-8. Copy the HTTPS URL (some thing like https://25e5bc5277ea.ngrok.io) and go back to the created agent, click on "Fulfillment" option, enable "Webhook" option and paste the URL in URL* filed and add "/my_webhook" at the end of URL 
-
-9. Congratulations !!! you just finish the configuration of the chatbot.
-
-## How to interact with the Chatbot?  
-
-1. Open the demo web interface provided by Dialogflow by clicking first on "Integrations" option and then on the "Web Demo" option
-
-2. Start chatting with the chatbot
 
 
 
