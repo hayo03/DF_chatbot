@@ -21,7 +21,7 @@ In the following, we explain the required steps in order to configure DF-Chatbot
 - Check "Required"
 - Fulfillement (Agent says): What is the location?
 4. Click on "Get Weather" page and create a new Route:
-- Condition: $page.params.status="FINAL"
+- Condition: $page.params.status="FINAL" (meaning all required parameters are fulfilled)
 - Check "Use Webhook"
 - Select "my_webhook_service"
 - Tag: GetWeather_fulfillment
