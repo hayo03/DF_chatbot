@@ -3,11 +3,12 @@
 ## Introduction 
 In the following, we explain the required step in order to configure DF-Chatbot and then interact with it. All these steps are demonstrated in this [video](https://drive.google.com/file/d/1_dwLW0SgkQHw-pU6RHTVlWK1JT-MCZIT/view?usp=sharing).
 ## How to configure Df-Chatbot? 
-1. Download the source code in this github project. The source code includes the following files:
-
-  *Study_Agent_CX.blob
-  
-  *Chatbot folder
+1. Go to [DialogFlow CX console](https://dialogflow.cloud.google.com/cx/projects)
+2. Create a new google cloud project and enable DialogFlow API.
+3. Create a new agent.
+4. Download the source code in this github project. The source code includes the following files:
+  *Study_Agent_CX.blob File
+  *Chatbot Folder
   
 2. Create a new project and an empty agent using  [DF-CX console](https://dialogflow.cloud.google.com/cx/projects)
 
