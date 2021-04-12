@@ -54,7 +54,7 @@ Once you finished to deploy your  own webhook_service on heroku, you can modify 
   * answer_webhook(): to return the answer in json format.
 - API_credentials.json: To fulfill some intents, the chatbot invokes specific APIs, namely [here](https://developer.here.com/); [openweathermap](https://openweathermap.org/api); [Yelp](https://www.yelp.com/developers/documentation/v3). We put our own credential information but you can get your own credential information and put them in this API_credentials.json file. Getting credential information requires creating accounts in these APIs.
 - api_manager.py: the "invoke_api" function in this file returns a string (the answer) depending on a given fulfillment. For example if the fulfillment is "GetWeather_fulfillment" we call OpenWeatherMap API using the API_crendentials (getAPI_credential('api.openweathermap','appid')) and using the given parameters values (slots_values_list). The "invoke_api" function returns a dynamic answer (reply = "There is {} in there.".format(weatherCondition)).
-2. Let's modify the code by changing "reply = "There is {} in there.".format(weatherCondition)" by "reply = "There is {} in there. Have a good day :)".format(weatherCondition)"
+2. Let's modify the code by changing "reply = "There is {} in there.".format(weatherCondition)" to "reply = "There is {} in there. Have a good day :)".format(weatherCondition)"
 3. Open a terminal and execute the following commands:
 ```
 cd webhook_service
