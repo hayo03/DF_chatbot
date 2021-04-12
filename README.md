@@ -13,20 +13,20 @@ In the following, we explain the required steps in order to configure DF-Chatbot
 
 ## Test your DF-Chatbot
 1. Click on "Start" page and create a new Route:
-- Intent: GetWeather
-- Tranistion: New Page "Get Weather"
-3. Click on "Get Weather" page and create a new parameter:
-- Parameter name: location
-- Entity type: @sys.geo-city
-- Check "Required"
-- Fulfillement (Agent says): What is the location?
-4. Click on "Get Weather" page and create a new Route:
-- Condition: $page.params.status="FINAL" (meaning all required parameters are fulfilled)
-- Check "Use Webhook"
-- Select "my_webhook_service"
-- Tag: GetWeather_fulfillment
-5. Click on "Test Agent" and ask the agent for the weather in a city. The agent will give you the weather forecast in the given city.
-6. Congratulations! You can now start the user study using this agent.
+   - Intent: GetWeather
+   - Tranistion: New Page "Get Weather"
+2. Click on "Get Weather" page and create a new parameter:
+   - Parameter name: location
+   - Entity type: @sys.geo-city
+   - Check "Required"
+   - Fulfillement (Agent says): What is the location?
+3. Click on "Get Weather" page and create a new Route:
+   - Condition: $page.params.status="FINAL" (meaning all required parameters are fulfilled)
+   - Check "Use Webhook"
+   - Select "my_webhook_service"
+   - Tag: GetWeather_fulfillment
+4. Click on "Test Agent" and ask the agent for the weather in a city. The agent will give you the weather forecast in the given city.
+5. Congratulations! You can now start the user study using this agent.
 
 ## Deploy your own webhook_service
 If you want/need to change the webhook_service source code you will need to deploy your own webhook_service. In the following, we explain the required steps to deploy the webhook_service on heroku:
