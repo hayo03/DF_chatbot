@@ -49,7 +49,7 @@ git push heroku master
 
 ## Modify webhook_service source code
 Once you finished to deploy your  own webhook_service on heroku, you can modify the webhook_service code source as following:
-1. There are three file inside webhook_service/app:
+1. There are three files inside webhook_service/app:
 - **main.py**: this file contains two functions: 
   * **post_webhook_dialogflow()**: this function get the session_id, fulfillment (target intent), and parameters (slots) from DialogFlow. Itn calls **invoke_api** a function defined in **api_manager.py** file to get an answer and returns this answer in json format.
   * **answer_webhook()**: to return the answer in json format.
