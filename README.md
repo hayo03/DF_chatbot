@@ -1,7 +1,7 @@
 # DF-Chatbot
 
 ## Introduction 
-In the following, we explain the required steps in order to configure DF-Chatbot and then interact with it. All these steps are demonstrated in this [video](https://drive.google.com/file/d/1_dwLW0SgkQHw-pU6RHTVlWK1JT-MCZIT/view?usp=sharing).
+In the following, we explain the required steps in order to configure DF-Chatbot and then interact with it. All these steps are demonstrated in this [video](https://drive.google.com/file/d/1p7CdlVTkFAB-SRiqrmysSz4ac8hRZt7_/view?usp=sharing).
 ## How to configure DF-Chatbot? 
 1. Go to [DialogFlow CX console](https://dialogflow.cloud.google.com/cx/projects) and connect to the console with your gmail
 2. Create a new google cloud project and enable DialogFlow API.
