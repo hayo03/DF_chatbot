@@ -40,6 +40,7 @@ git init
 git add .
 heroku login
 heroku create your_app_name %Create a unique name for your Web app
+git commit -m "initial commit"
 git push heroku master
 ```
 4. On DialogFlow CX go to webhooks and change the previous URL ([https://webhook-workshop.herokuapp.com/my_webhook](https://webhook-workshop.herokuapp.com/my_webhook)) by your new URL (some thing like [https://your_app_name.herokuapp.com/my_webhook](https://your_app_name.herokuapp.com/my_webhook)).
