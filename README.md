@@ -46,15 +46,15 @@ git push heroku master
 5. Click on "Test Agent" and ask the agent for the weather in a city. The agent will give you the weather forecast in the given city.
 
 
-## Modify webhook_service code source
+## Modify webhook_service source code
 Once you finished to deploy your  own webhook_service on heroku, you can modify the webhook_service code source as following:
 1. There are three file inside webhook_service/app:
-- main.py: this file contains two functions: 
-  * post_webhook_dialogflow(): this function get the session_id, fulfillment (target intent), and parameters (slots) from DialogFlow. Itn calls "invoke_api" a function defined on "api_manager.py" file to get an answer and returns this answer in json format.
-  * answer_webhook(): to return the answer in json format.
-- API_credentials.json: To fulfill some intents, the chatbot invokes specific APIs, namely [here](https://developer.here.com/); [openweathermap](https://openweathermap.org/api); [Yelp](https://www.yelp.com/developers/documentation/v3). We put our own credential information but you can get your own credential information and put them in this API_credentials.json file. Getting credential information requires creating accounts in these APIs.
-- api_manager.py: the "invoke_api" function in this file returns a string (the answer) depending on a given fulfillment. For example if the fulfillment is "GetWeather_fulfillment" we call OpenWeatherMap API using the API_crendentials (getAPI_credential('api.openweathermap','appid')) and using the given parameters values (slots_values_list). The "invoke_api" function returns a dynamic answer (reply = "There is {} in there.".format(weatherCondition)).
-2. Let's modify the code by changing "reply = "There is {} in there.".format(weatherCondition)" to "reply = "There is {} in there. Have a good day :)".format(weatherCondition)" in the api_manager.py file
+- **main.py**: this file contains two functions: 
+  * **post_webhook_dialogflow()**: this function get the session_id, fulfillment (target intent), and parameters (slots) from DialogFlow. Itn calls **invoke_api** a function defined in **api_manager.py** file to get an answer and returns this answer in json format.
+  * **answer_webhook()**: to return the answer in json format.
+- **API_credentials.json**: To fulfill some intents, the chatbot invokes specific APIs, namely [here](https://developer.here.com/); [openweathermap](https://openweathermap.org/api); [Yelp](https://www.yelp.com/developers/documentation/v3). We put our own credential information but you can get your own credential information and put them in this file. Getting credential information requires creating accounts in these APIs.
+- **api_manager.py**: the **invoke_api** function in this file returns a string (the answer) depending on a given fulfillment. For example if the fulfillment is *GetWeather_fulfillment* we call *OpenWeatherMap* API using the **API_crendentials** (*getAPI_credential('api.openweathermap','appid')*) and using the given parameters values (*slots_values_list*). The **invoke_api** function returns a dynamic answer (*reply = "There is {} in there.".format(weatherCondition)*).
+2. Let's modify the code by changing *reply = "There is {} in there.".format(weatherCondition)* to *reply = "There is {} in there. Have a good day :)".format(weatherCondition)* in the **api_manager.py** file
 3. Open a terminal and execute the following commands:
 ```
 cd webhook_service
@@ -62,8 +62,8 @@ git init
 git add .
 git push heroku master
 ```
-4. On DialogFlow CX, click on "Test Agent" and ask the agent for the weather in a city. The agent will give you the weather forecast in the given city by answering "There is {something} in there. Have a good day :)".
-5. You can now modify the code source and deploy your own webhook_service. Don't forget to execute commands of step 3 to apply the updates. You can also use the following command to show logs:
+4. On DialogFlow CX, click on "Test Agent" and ask the agent for the weather in a city. The agent will give you the weather forecast in the given city by answering *There is {something} in there. Have a good day :)*
+5. You can now modify the source code and deploy your own webhook_service. Don't forget to execute commands in step 3 to apply the updates. You can also use the following command to show logs:
 ```
 heroku logs --tail --app your_app_name
 ```
