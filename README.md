@@ -8,7 +8,7 @@ In the following, we explain the required steps in order to configure DF-Chatbot
 3. Create a new empty agent.
 4. Download Study_Agent.blob file in this github project. The Study_Agent.blob file contains necessary intents, training phrases, and entities for this user study.
 5. Go to "View all agents" in the current project and restore Study_Agent.
-6. To have access to the webhook service for this study, create a new webhook "my_webhook_service" and use this URL [https://webhook-workshop.herokuapp.com/my_webhook](https://webhook-workshop.herokuapp.com/my_webhook). In the next section, we will show you how to deploy this webhook_service on heroku, it will allow you to use your own URL and update the code.
+6. To have access to the webhook service for this study, create a new webhook "my_webhook_service" and use this URL [https://webhook-workshop.herokuapp.com/my_webhook](https://webhook-workshop.herokuapp.com/my_webhook). In the next section, we will show you how to deploy this webhook_service on heroku, it will allow you to use your own URL and modify the source code.
 7. Congratulations! you just finish the configuration of the chatbot. Let's do a test.
 
 ## Test your DF-Chatbot
