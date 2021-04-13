@@ -61,6 +61,7 @@ Once you finished to deploy your  own webhook_service on heroku, you can modify 
 cd webhook_service
 git init 
 git add .
+git commit -m "make it better"
 git push heroku master
 ```
 4. On DialogFlow CX, click on "Test Agent" and ask the agent for the weather in a city. The agent will give you the weather forecast in the given city by answering *There is {something} in there. Have a good day :)*
